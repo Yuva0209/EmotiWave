@@ -1,49 +1,44 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class MoodAnalyzer {
 
-    public static String getQuote(String mood) {
+
+    public static Map<String, String> getSongs(String mood) {
+        Map<String, String> songs = new HashMap<>();
         switch (mood.toLowerCase()) {
-            case "happy":
-                return "Happiness is a direction, not a place. – Sydney J. Harris";
-            case "sad":
-                return "Sadness flies away on the wings of time. – Jean de La Fontaine";
-            case "angry":
-                return "Speak when you are angry and you will make the best speech you will ever regret. – Ambrose Bierce";
-            case "relaxed":
-                return "Almost everything will work again if you unplug it for a few minutes. – Anne Lamott";
-            case "stressed":
-                return "The greatest weapon against stress is our ability to choose one thought over another. – William James";
-            case "inspired":
-                return "Start where you are. Use what you have. Do what you can. – Arthur Ashe";
-            default:
-                return "Keep shining, you're doing amazing!";
+            case "happy" -> {
+                songs.put("Tum Hi Ho Bandhu", "https://www.youtube.com/watch?v=Pn8EoOXxZ8w");
+                songs.put("Zinda", "https://www.youtube.com/watch?v=8mIXtGgkGXI");
+            }
+            case "sad" -> {
+                songs.put("Channa Mereya", "https://www.youtube.com/watch?v=284Ov7ysmfA");
+                songs.put("Agar Tum Saath Ho", "https://www.youtube.com/watch?v=sK7riqg2mr4");
+            }
+            case "relaxed" -> {
+                songs.put("Raabta", "https://www.youtube.com/watch?v=JbnLlDcQ7cA");
+            }
+            case "inspired" -> {
+                songs.put("Zinda", "https://www.youtube.com/watch?v=8mIXtGgkGXI");
+            }
+            // Add more moods and songs if you like
+            default -> songs.put("Let the vibe guide you ✨", "https://www.youtube.com/");
         }
+        return songs;
     }
 
-    public static String getSong(String mood) {
+    public static String getQuote(String mood) {
         return switch (mood.toLowerCase()) {
-            case "happy" -> "Song: 'Happy' by Pharrell Williams\n🔗 https://www.youtube.com/watch?v=ZbZSe6N_BXs";
-            case "sad" -> "Song: 'Someone Like You' by Adele\n🔗 https://www.youtube.com/watch?v=hLQl3WQQoQ0";
-            case "angry" -> "Song: 'Numb' by Linkin Park\n🔗 https://www.youtube.com/watch?v=kXYiU_JCYtU";
-            case "relaxed" -> "Song: 'Weightless' by Marconi Union\n🔗 https://www.youtube.com/watch?v=UfcAVejslrU";
-            case "stressed" -> "Song: 'Let It Be' by The Beatles\n🔗 https://www.youtube.com/watch?v=QDYfEBY9NM4";
-            case "inspired" -> "Song: 'Fight Song' by Rachel Platten\n🔗 https://www.youtube.com/watch?v=xo1VInw-SKc";
-            default -> "🎵 No song found for that mood.";
+            case "happy" -> "Happiness is not something ready made. It comes from your own actions. – Dalai Lama";
+            case "sad" -> "Tears come from the heart and not from the brain. – Leonardo da Vinci";
+            case "relaxed" -> "It’s a good idea always to do something relaxing prior to making an important decision. – Paulo Coelho";
+            case "angry" -> "For every minute you remain angry, you give up sixty seconds of peace of mind. – Ralph Waldo Emerson";
+            case "inspired" -> "Believe you can and you're halfway there. – Theodore Roosevelt";
+            case "stressed" -> "You cannot always control what goes on outside. But you can always control what goes on inside. – Wayne Dyer";
+            default -> "Every emotion is valid — just feel it and move through it. 💖";
         };
     }
 
-    public static void logMood(String mood, String quote, String song) {
-        try (FileWriter writer = new FileWriter("logs/mood_log.txt", true)) {
-            writer.write("Mood: " + mood + "\n");
-            writer.write("Time: " + LocalDateTime.now() + "\n");
-            writer.write("Quote: " + quote + "\n");
-            writer.write("Song: " + song + "\n");
-            writer.write("------------------------\n");
-        } catch (IOException e) {
-            System.out.println("Error logging mood: " + e.getMessage());
-        }
-    }
+
 }
