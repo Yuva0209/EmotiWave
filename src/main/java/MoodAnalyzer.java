@@ -24,22 +24,15 @@ public class MoodAnalyzer {
     }
 
     public static String getSong(String mood) {
-        switch (mood.toLowerCase()) {
-            case "happy":
-                return "\"Happy\" by Pharrell Williams";
-            case "sad":
-                return "\"Someone Like You\" by Adele";
-            case "angry":
-                return "\"Numb\" by Linkin Park";
-            case "relaxed":
-                return "\"Weightless\" by Marconi Union";
-            case "stressed":
-                return "\"Let It Be\" by The Beatles";
-            case "inspired":
-                return "\"Hall of Fame\" by The Script ft. will.i.am";
-            default:
-                return "Silence can be music too 🌌";
-        }
+        return switch (mood.toLowerCase()) {
+            case "happy" -> "Song: 'Happy' by Pharrell Williams\n🔗 https://www.youtube.com/watch?v=ZbZSe6N_BXs";
+            case "sad" -> "Song: 'Someone Like You' by Adele\n🔗 https://www.youtube.com/watch?v=hLQl3WQQoQ0";
+            case "angry" -> "Song: 'Numb' by Linkin Park\n🔗 https://www.youtube.com/watch?v=kXYiU_JCYtU";
+            case "relaxed" -> "Song: 'Weightless' by Marconi Union\n🔗 https://www.youtube.com/watch?v=UfcAVejslrU";
+            case "stressed" -> "Song: 'Let It Be' by The Beatles\n🔗 https://www.youtube.com/watch?v=QDYfEBY9NM4";
+            case "inspired" -> "Song: 'Fight Song' by Rachel Platten\n🔗 https://www.youtube.com/watch?v=xo1VInw-SKc";
+            default -> "🎵 No song found for that mood.";
+        };
     }
 
     public static void logMood(String mood, String quote, String song) {
