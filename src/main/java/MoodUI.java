@@ -8,6 +8,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import java.awt.Desktop;
+import java.net.URI;
 
 public class MoodUI extends Application {
 
@@ -58,8 +60,19 @@ public class MoodUI extends Application {
     private void handleMoodClick(String mood) {
         String quote = MoodAnalyzer.getQuote(mood);
         String song = MoodAnalyzer.getSong(mood);
+
         outputArea.setText("🎵 Recommended Song:\n" + song + "\n\n💬 Quote:\n" + quote);
         MoodAnalyzer.logMood(mood, quote, song);
+
+        // Extract and open the YouTube link
+        if (song.contains("https://")) {
+            String url = song.substring(song.indexOf("https://")).trim();
+            try {
+                Desktop.getDesktop().browse(new URI(url));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private String getButtonStyle(String bgColor) {
